@@ -1,0 +1,15 @@
+services:
+  deepcool:
+    build: .
+    privileged: true
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video,display
+    devices:
+      - "/dev/hidraw3:/dev/hidraw3"
+    volumes:
+      - "/dev/bus/usb:/dev/bus/usb"
+      - "/sys/class/hidraw:/sys/class/hidraw"
+    stdin_open: true
+    tty: true
